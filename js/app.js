@@ -35,8 +35,8 @@
   const SKEY = 'wb.v1';
   let state = { checks: {}, custom: [], theme: 'light' };
   try { Object.assign(state, JSON.parse(localStorage.getItem(SKEY) || '{}')); } catch (e) { /* 首次使用 */ }
-  // 主题切换为浅色默认：老访次一次性迁移（之后尊重用户手动切换）
-  if (!state.themeLightV2) { state.theme = 'light'; state.themeLightV2 = 1; try { save(); } catch (e) { } }
+  // 产品定版浅色为默认：每个迁移版本强制切一次浅色，之后尊重用户手动切换
+  if (state.themeV3 !== 'light') { state.theme = 'light'; state.themeV3 = 'light'; try { save(); } catch (e) { } }
   const save = () => localStorage.setItem(SKEY, JSON.stringify(state));
 
   // 勾选键：周常量任务按「周」记忆，其余按「永久」记忆
