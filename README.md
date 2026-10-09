@@ -2,10 +2,11 @@
 
 大学生活 + 求职一体化管理面板。纯静态、零依赖、无构建，数据全部本地化。
 
+- **线上地址**：https://ppgod886.github.io/qingyan-workbench/（GitHub Pages，仓库 ppgod886/qingyan-workbench）
+- **本地使用**：双击 `index.html` 即可；注意勾选进度存在各自设备的浏览器里，线上与本机互不相通
+
 ## 使用
 
-- 直接双击 `index.html` 即可打开（file:// 协议下 localStorage 同样可用）；
-  或在本目录起本地服务：`python -m http.server 8633` → http://127.0.0.1:8633
 - 左侧导航切换 7 个视图：总览 / 求职作战室 / 课表 / 任务板 / 成果库 / 北辰实习 / 关于我
 - 右下角可切换 深色 / 浅色 主题
 
@@ -29,5 +30,18 @@
 
 ## 隐私提示
 
-`js/data.js` 含真实姓名、课表、职业规划等个人信息。**公开部署前请确认**：
-可接受方案包括访问口令 + 数据加密、脱敏后部署，或仅本地使用。
+`js/data.js` 含真实姓名、课表、职业规划等个人信息。2026-10-09 经用户确认选择**完整公开部署**（GitHub 仓库为 public）。
+如想改为加密访问或转为私有，把仓库设为 private 前先迁移 Pages（免费账户 private 仓库不支持 Pages），或删除仓库只留本地。
+
+## 更新线上
+
+改动文件后（例如换了课表、加了任务）：
+
+```bash
+cd qingyan-workbench
+git add -A && git commit -m "更新内容"
+# 本机 git 配置了 ghproxy 镜像（只读），推送需绕过：
+git push https://x-access-token:$(gh auth token)@github.com/ppgod886/qingyan-workbench.git main
+```
+
+推送后 GitHub Pages 约 1 分钟内自动更新。
